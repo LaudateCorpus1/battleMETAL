@@ -20,6 +20,7 @@ void() msn_getfile={
     fclose(flannel);
   }
   else{
+    MSN_FILEFOUND = FALSE;
     MSN_NAME = "FILE NOT FOUND";
     MSN_TYPE = "FILE NOT FOUND";
     MSN_SECTOR = "FILE NOT FOUND";
@@ -27,6 +28,7 @@ void() msn_getfile={
     MSN_LOCALTIME ="FILE NOT FOUND";
     MSN_BRIEF = "FILE NOT FOUND";
     MSN_INTEL = "FILE NOT FOUND";
+    strunzone(MSN_FILENAME);
   }
 };
 

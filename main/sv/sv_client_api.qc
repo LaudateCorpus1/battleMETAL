@@ -243,7 +243,7 @@ void() ClientKill = {
     self.frags = 0;
   }
   
-  self.clientData.SendFlags = self.clientData.SendFlags | (SENDFLAG_EFLAGS | SENDFLAG_NEWUNIT);
+  self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_EFLAGS;
   self.health = 0;
   self.th_die();
 };
@@ -394,7 +394,7 @@ void() PutClientInServer_Deathmatch={
   }
   client_push_mapobjects(); //refreshes map object data for everyone
   self.th_die = PlayerDieNetwork;  
-  self.clientData.SendFlags = self.clientData.SendFlags | (SENDFLAG_MOVE | SENDFLAG_NEWUNIT | SENDFLAG_EFLAGS);
+  self.clientData.SendFlags = self.clientData.SendFlags | (SENDFLAG_MOVE | SENDFLAG_EFLAGS);
   
   //if( cvar("developer") ){
   // self.playerState = PLAYER_ACTIVE;

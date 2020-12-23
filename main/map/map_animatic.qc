@@ -170,21 +170,24 @@ void() map_animatic={
   
   self.isActive = TRUE;
   //START_OFF
-  if( (self.spawnflags & 1) )
+  if( (self.spawnflags & 1) ){
     self.isActive = FALSE;
-  
+  }
   if( (self.spawnflags & 32) ){
     //set default freeze time
-    if( !self.count1 )
+    if( !self.count1 ){
       self.count1 = 15;
+    }
   }
 
   if( (self.spawnflags & 64) ){
     //no default for cooldown behavior;
-    if( !self.wait )
+    if( !self.wait ){
       self.spawnflags = self.spawnflags - (self.spawnflags & 64);
+    }
   }
   
-  if( (self.spawnflags & 1) )
+  if( (self.spawnflags & 1) ){
     self.touch = animatic_event_touch;
+  }
 };

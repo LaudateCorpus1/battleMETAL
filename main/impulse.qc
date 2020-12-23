@@ -195,6 +195,7 @@ void() ImpulseCommands ={
     }
     if( self.data_type == DATA_MECH ){
       client_update_faction();
+      self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_FACTION;
     }
     else{
       if( GAMETYPE == GAMEMODE_DM ){
@@ -202,7 +203,6 @@ void() ImpulseCommands ={
         PutClientInServer();
       }
     }
-    self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_TURRET;
   }
   
   if(self.impulse == IMP_FAC_PREV){
@@ -212,6 +212,7 @@ void() ImpulseCommands ={
     }
     if( self.data_type == DATA_MECH ){
       client_update_faction();
+      self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_FACTION;
     }
     else{
       if( GAMETYPE == GAMEMODE_DM ){
@@ -219,7 +220,6 @@ void() ImpulseCommands ={
         PutClientInServer();
       }
     }
-    self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_TURRET;
   }
 
   if(self.impulse == IMP_EXTERNAL_CAMERA){
@@ -229,6 +229,7 @@ void() ImpulseCommands ={
     else{
       self.chaseActive = TRUE;
     }
+    self.clientData.SendFlags = self.clientData.SendFlags | SENDFLAG_CAMERA;
   }
 
 	self.impulse = 0;

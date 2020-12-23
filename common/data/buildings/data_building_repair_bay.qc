@@ -118,7 +118,7 @@ void() building_repair_select={
       if( !(player.flags & FL_NOSHOOT) ){
         player.flags = player.flags | FL_NOSHOOT;
         self.moveState = TRUE; //preserve client FL_NOSHOOT setting
-        player.clientData.SendFlags = player.clientData.SendFlags | SENDFLAG_NEWENT;
+        player.clientData.SendFlags = player.clientData.SendFlags | SENDFLAG_EFLAGS;
       }
       client_send_event_repairs( player, TRUE );
     }
@@ -275,8 +275,8 @@ void() building_repair_idle={
     if( self.ai_state_last != PLAYER_RESPAWN ){
       if( self.moveState == TRUE){
         //player's FL_NOSHOOT was only for the repair action, so we remove it now.
-        self.trigger_field.flags = self.trigger_field.flags - (self.trigger_field.flags & FL_NOSHOOT);
-         self.trigger_field.clientData.SendFlags = self.trigger_field.clientData.SendFlags | SENDFLAG_NEWENT;
+         self.trigger_field.flags = self.trigger_field.flags - (self.trigger_field.flags & FL_NOSHOOT);
+         self.trigger_field.clientData.SendFlags = self.trigger_field.clientData.SendFlags | SENDFLAG_EFLAGS;
         self.moveState = FALSE;
       }
       self.goalentity = world;
@@ -296,7 +296,7 @@ void() building_repair_cooldown={
     if( self.moveState == TRUE){
       //player's FL_NOSHOOT was only for the repair action, so we remove it now.
       self.trigger_field.flags = self.trigger_field.flags - (self.trigger_field.flags & FL_NOSHOOT);
-       self.trigger_field.clientData.SendFlags = self.trigger_field.clientData.SendFlags | SENDFLAG_NEWENT;
+       self.trigger_field.clientData.SendFlags = self.trigger_field.clientData.SendFlags | SENDFLAG_EFLAGS;
       self.moveState = FALSE;
     }
     client_send_event_repairs( self.trigger_field, FALSE );
@@ -522,7 +522,7 @@ void() building_human_repair={
   self.compAltOffset = self.origin;
   self.th_die = hrepair_die;
     
-  if( (self.spawnflags & IT_QUAD) ){
+  if( (self.spawnflags & IS_MAPKEY) ){
     self.effects = self.effects | EF_NODEPTHTEST;
   }
   self.canTarget = TRUE;

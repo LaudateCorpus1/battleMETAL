@@ -120,6 +120,7 @@ void( string modelName, float setSizeFlag ) misc_building={
   
   self.data_type = DATA_BLD;
   self.getTarget = FALSE;
+  
   if( (self.spawnflags & BUILDING_TARGET_FLAG) ){
     self.getTarget = TRUE;
   }
